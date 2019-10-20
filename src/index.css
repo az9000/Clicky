@@ -5,9 +5,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color : deepskyblue;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+  background-color: black;
+} 
