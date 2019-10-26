@@ -3,10 +3,12 @@ import "./App.css";
 import characters from "./characters.json";
 import CharacterCard from "./components/CharacterCard";
 import Score from "./components/Score";
+import shuffle from './utils/utility';
 
 class App extends Component {
   constructor() {
     super();
+
     this.state = {
       message: "Click an image to begin",
       messageStyle: {
@@ -38,7 +40,7 @@ class App extends Component {
 
       tempClicked = this.state.clicked;
       if (tempClicked.length === 11) {
-        this.newCharacters = this.shuffleArray(characters).slice(-12);
+        this.newCharacters = shuffle(characters).slice(-12);
         let tempTotalScore = this.state.totalScore + 1;
         this.setState({ message: "Click an image to begin" });
         this.setState({
@@ -50,11 +52,11 @@ class App extends Component {
         this.setState({ score: 0 }); 
         this.setState({ totalScore: tempTotalScore });
       } else {
-        this.newCharacters = this.shuffleArray(this.newCharacters);
+        this.newCharacters = shuffle(this.newCharacters);
       }
     } else {
       console.log("clicked already");
-      
+      this.setState({ message: "Image already clicked!" });
       this.imageStyle = {
         animation: "shake 0.5s",
         animationIterationCount: "1"
@@ -75,24 +77,12 @@ class App extends Component {
         this.setState({ score: 0 });        
       }, 1000);
       
-      this.newCharacters = this.shuffleArray(characters).slice(-12);
+      this.newCharacters = shuffle(characters).slice(-12);
     }
   }
-
-  shuffleArray(array) {
-    let temp;
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-      // swap elements array[i] and array[j]
-      temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-    }
-    return array;
-  }
-
+  
   resetGame() {
-    this.newCharacters = this.shuffleArray(characters).slice(-12);
+    this.newCharacters = shuffle(characters).slice(-12);
   }
 
   render() {
