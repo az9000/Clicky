@@ -5,7 +5,12 @@ import CharacterCard from "./components/CharacterCard";
 import Score from "./components/Score";
 import shuffle from './utils/utility';
 
+const footerStyle = {
+  height: '40px'
+}
+
 class App extends Component {
+
   constructor() {
     super();
 
@@ -120,6 +125,7 @@ class App extends Component {
             })}
           </div>
         </div>
+        <div className="navbar fixed-bottom navbar-inverse bg-dark" style={footerStyle}></div>
       </React.Fragment>
     );
   }
